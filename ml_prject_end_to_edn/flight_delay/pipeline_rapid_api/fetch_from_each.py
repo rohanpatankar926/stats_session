@@ -19,7 +19,7 @@ class FetchData:
                 with open(file_path,self.read_mode) as read_data:
                     data_read=csv.reader(read_data)
                     header=next(data_read)
-                    fetch_only_20=[rows for idx,rows in enumerate(data_read) if idx< 20]
+                    fetch_only_20=[rows for idx,rows in enumerate(data_read) if idx< 20000]
                 if not os.path.exists(os.path.join(os.getcwd(),"data")):
                     os.makedirs(os.path.join(os.getcwd(),"data"),exist_ok=True)
                 data_dest_name=os.path.join(os.getcwd(),"data",data)
