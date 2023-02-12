@@ -34,7 +34,7 @@ def index():
             prediction=loaded_model.predict([[gre_score,toefl_score,university_rating,sop,lor,cgpa,research]])
             print('prediction is', prediction)
             # showing the prediction results in a UI
-            return render_template('results.html',prediction=round(100*prediction[0]))
+            return render_template('results.html',prediction=round(prediction[0]))
         except Exception as e:
             print('The Exception message is: ',e)
             return 'something is wrong'
