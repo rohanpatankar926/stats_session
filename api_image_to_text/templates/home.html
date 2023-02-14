@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Prediction Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <form id="image-form">
+      <label for="image-path">Image Path:</label>
+      <input type="text" id="image-path" name="image_paths">
+      <input type="submit" value="Predict">
+    </form>
+    <div id="predictions"></div>
+
+    <script>
+      $(document).ready(function() {
+        $("#image-form").submit(function(event) {
+          event.preventDefault();
+          var imagePath = $("#image-path").val();
+          $.ajax({
+            url: "/predict",
+            type: "POST",
+            data: {image_paths: imagePath},
+            success: function(response) {
+              $("#predictions").html(response.predictions);
+            },
+            error: function(xhr, status, error) {
+              console.log("Error: " + error);
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
